@@ -114,6 +114,15 @@ export default {
             }
          })
       })      
+      EventBus.$on('sendData', function(data){
+         Vue.nextTick( function () {
+            console.log(data)
+            self.itensList = self.itensList.concat(data)
+            self.search.offset = self.itensList.length
+            self.search.total = self.search.total+1
+            self.setUtl()
+         })
+      })
    
    }
 

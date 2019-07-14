@@ -106,7 +106,7 @@
 
 .section-list, .section-detail{
   .list-wrap{
-    .erroload{margin:auto; text-align:center;}
+    .erroload, .moreload{width:100%; margin:auto; text-align:center;}
   }
   .item{margin:0 auto 20px; opacity:1; @include transition($animatDefault);
     &.v-enter-active, &.v-leave-active{opacity:0;}

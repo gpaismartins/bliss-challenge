@@ -38,11 +38,13 @@
                      <h3>{{item.question}}</h3>
                      <a :href="'detail?id='+item.id" class="btn"> View more </a>
                   </div>
-                  <div class="erroload" key="erro" v-if="responseErro">
+                  <div class="erroload" v-if="responseErro" key="erro" v-cloak>
                      <p>something is wrong</p>
                      <div class="btn center" @click="clickToReload()" v-cloak> Reload page </div>
                   </div>
-                  <div class="btn center" :class="{loading: loading}" @click="clickMore()" v-if="itensList.length < search.total && itensList.length" key="btn" v-cloak> Load More <samp><icon class="spin animate-spin"></icon></samp> </div>
+                  <div class="moreload" v-if="itensList.length < search.total && itensList.length" key="btn" v-cloak>
+                     <div class="btn center" :class="{loading: loading}" @click="clickMore()"> Load More <samp><icon class="spin animate-spin"></icon></samp> </div>
+                  </div>
                </transition-group>               
          
             </div>

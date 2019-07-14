@@ -121,6 +121,7 @@ const app = new Vue({
 				data: JSON.stringify(newItem),
 			}).then(function (response) {
 				self.openModal(msg)
+				EventBus.$emit('sendData', response.data )    
 			}).catch(function (error) {
 				
 			});
