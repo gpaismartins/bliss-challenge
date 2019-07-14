@@ -1,0 +1,21 @@
+/*/////////////////////////////////////////////////////////////////////////////////////////// detail */
+.section-detail{
+  	.col-detail{
+  		img{position:relative;}
+
+  		.votes-wrap{
+	  		li{display:inline-flex; margin:10px 0; flex-direction:column;
+	  			.langs{font-weight:700}
+	  			.votes{margin:5px 0;}
+	  		}
+  		}
+  	}
+}
+
+@include media-breakpoint-down(sm) {
+	.section-detail{
+		.col-detail{margin-top:60px;}
+		.side-box{position:fixed; top:60px; right:0; background-color:$cor-grd; z-index:1; justify-content:flex-start; transform:translateY(0px) !important;}
+	}
+}
+

@@ -1,0 +1,90 @@
+/*/////////////////////////////////////////////////////////////////////////////////////////// BODY */
+html,body,div,pre,form,fieldset,input,h1,h2,h3,h4,h5,h6,span,p,textarea,ul,ol,li,dl,dt,dd,blockquote,th,td,
+/* HTML 5 elements */ abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,
+mark,menu,meter,nav,output,progress,main,section,summary,time,video {margin:0; padding:0; box-sizing:border-box; line-height:100%;}
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset,img { border: 0; }
+address,caption,cite,code { font-style: normal; font-weight: normal; }
+ul { list-style: none; }
+caption,th { text-align: left; }
+h1,h2,h3,h4,h5,h6 { font-size: 100%; font-weight: normal; }
+q:before,q:after { content: ''; }
+abbr,acronym { border: 0; }
+a {outline:none; text-decoration:none; } a img { border:none; } 
+:focus { outline:none; }/* For Chrome */
+body,html{ width:100%; height:100%; min-width:320px; font-family:'Raleway', sans-serif; font-size:100%; color:#000; background-color:$cor-grd;}
+[v-cloak] {display: none;}
+[v-cloak] > * {display:none;}
+main{position:relative; display:block; width:100%; min-height:100%;}
+section{position:relative; width:100%; height:100%; padding:0;
+   .container{position:relative; z-index:1;}
+}
+.no-scroll{overflow: hidden;}
+.max-w{max-width:960px; width:100%; margin:auto;}
+
+/* 1200px */
+@include media-breakpoint-down(lg) {}
+/* 992px */
+@include media-breakpoint-down(md) {}
+/* 768px */
+@include media-breakpoint-down(sm) {}
+/* 576px */
+@include media-breakpoint-down(xs) {}
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////// COOKIES */
+#cookies{position:relative; z-index:10; 
+   .bar{position:fixed; display:flex; width:100%; background-color:$cor-grey; align-items:center; 
+      p{padding:0px 40px; flex:1;}
+      .btn-close{min-width:initial; width:auto;}
+   }
+}
+@include media-breakpoint-down(md) {
+   #cookies{
+      .bar{
+         p{padding:0px 10px;}
+      }
+   }
+}
+
+.loading, .retry{display:flex; height:480px; color:$cor-grey-dark; font-size:40px; justify-content:center; align-items:center;}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////  TXT */
+.padding{padding:100px 0px 100px}
+h2, h3, h4, h5, h6, p{display:block; margin:10px 0px; line-height:120%;}
+h2{font-size:32px;}
+h3{font-size:24px;}
+h4{font-size:18px;}
+h5{font-size:14px;}
+h6{font-size:12px;}
+p{font-size:16px; font-weight:normal; line-height:140%;}
+
+@include media-breakpoint-down(sm) {
+    .padding{padding:60px 0px 60px;}
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////// MODAL */
+.modal{position:fixed; display:flex; top:0; left:0; width:100%; height:100%; z-index:10; opacity:1; align-items:center; overflow:auto; @include transition($animatDefault);
+    &.v-enter-active, &.v-leave-active{opacity:0;}
+    .modal-backgrd{position:fixed; top:0; left:0; width:100%; min-height:100%; background-color:$white; opacity:0.4; z-index:0;}
+    .modal-inside{position:relative; display:flex; height:auto; max-height:100%; margin:0px auto; padding:60px 10px 20px; z-index:2; overflow:visible;
+        .modal-close{position:fixed; display:flex; top:10px; right:15px; width:40px; height:40px; background-color:#000; align-items:center; justify-content: center; cursor:pointer; z-index:5;
+            &:before{position:absolute; content:''; display:block; width:24px; height:2px; border-radius:2px; background-color:#fff; transform: rotate(45deg);}
+            &:after{position:absolute; content:''; display:block; width:24px; height:2px; border-radius:2px; background-color:#fff; transform: rotate(-45deg);}
+        }
+        .modal-contem{flex:1 1 auto;}
+    }
+}
+
+.section-modal{display:flex; width:300px; height: auto; background-color: #fff; flex-wrap:wrap;
+  .bar{width:100%; height:40px; background-color:$black;
+    .modal-close{position:absolute; top:0; right:0;}
+  }
+  form{padding:20px; margin:auto;}
+  .msg{padding:20px; margin:auto; text-align:center;}
+}
+
+@include media-breakpoint-down(sm) {
+    .modal .modal-inside{padding:20px 10px 20px;}
+}

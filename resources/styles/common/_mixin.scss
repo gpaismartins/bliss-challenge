@@ -1,0 +1,110 @@
+$grid-columns: 24;
+$grid-gutter-width: 20px;
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/utilities/sizing";
+
+@mixin animation($animation...) { 
+    -moz-animation: $animation;
+    -o-animation: $animation;
+    -webkit-animation: $animation;
+    animation: $animation;
+}
+
+@mixin transition($transition...) {
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+   @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+/*@include stroke(5, rgba(255,255,255,0.5) );*/
+
+/* SQUARE */
+.square-box{
+   &:before{display:block; content:''; padding-top:100%;}
+   @for $i from 1 through 9 {
+      &.sq-#{$i}0 {
+         &:before{padding-top:($i)*10%;}
+      }
+   }
+   @include media-breakpoint-up(sm) {
+      @for $i from 1 through 9 {
+        &.sq-sm-#{$i}0 {
+            &:before{padding-top:($i)*10%;}
+         }
+      }
+   }
+   @include media-breakpoint-up(md) {
+      @for $i from 1 through 9 {
+        &.sq-md-#{$i}0 {
+            &:before{padding-top:($i)*10%;}
+         }
+      }
+   }
+   @include media-breakpoint-up(lg) {
+      @for $i from 1 through 9 {
+        &.sq-lg-#{$i}0 {
+            &:before{padding-top:($i)*10%;}
+         }
+      }
+   }
+   @include media-breakpoint-up(xl) {
+      @for $i from 1 through 9 {
+        &.sq-xl-#{$i}0 {
+            &:before{padding-top:($i)*10%;}
+         }
+      }
+   }
+}
+
+@mixin backgrd($img) {
+    @if ($img != '') {
+        background-image:url($img);
+    }
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+$animatDefault: 250ms ease-in-out;
+
+
+/** Colors */
+$cor-pri:#c0c0c0; 
+
+$cor-txt: #000000;
+$cor-grey: #c0c0c0;
+$cor-grey-dark: #808080;
+$cor-grey-light: #d3d3d3;
+
+$cor-grd: #d3d3d3;
+$cor-crm-txt:#c0c0c0;
+$cor-crm-grd:#a9a9a9;
