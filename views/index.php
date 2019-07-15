@@ -3,10 +3,10 @@
 
 <?php include 'partials/head.php' ?>
 
+<list inline-template>
 <main>
 
-   <list inline-template>
-   <section class="section-list padding">
+   <section class="section-list padding" v-if="!detail">
       <div class="container">
          <div class="row">
 
@@ -36,7 +36,8 @@
                      </div>
                      <h6>{{item.published_at}}</h6>
                      <h3>{{item.question}}</h3>
-                     <a :href="'detail?id='+item.id" class="btn"> View more </a>
+                     <!--<a :href="'detail?id='+item.id" class="btn"> View more </a>-->
+                     <a class="btn" @click="showDetail(index)"> View more </a>
                   </div>
                   <div class="erroload" v-if="responseErro" key="erro" v-cloak>
                      <p>something is wrong</p>
@@ -70,8 +71,50 @@
          </div>
       </div>
    </section>
-   </list>
 
+   <section class="section-detail padding" v-if="detail">
+      <div class="container">
+         <div class="row">
+
+            <div class="col-auto col-side">
+               <div class="side-box" v-cloak>
+                  <a class="btn margin" @click="backToList()" >Back</a>
+                  <div class="side-txt">id {{itemData.id}}</div>
+               </div>
+            </div>
+
+            <div class="col col-detail">
+               <div class="row">
+                  <div class="item col-24">
+                     <div class="img square-box sq-60">
+                        <img :src="itemData.image_url" alt="pic">
+                     </div>
+                     <h6>{{itemData.published_at}}</h6>
+                     <h3>{{itemData.question}}</h3>
+                     <ul class="votes-wrap row justify-content-between">
+                        <li class="col-lg-auto col-12" v-for="(item, index) in itemData.choices">
+                           <span class="langs">{{item.choice}}</span>
+                           <span class="votes">{{item.votes}}</span>
+                           <div class="btn" @click="voteLang(item.choice)" v-if="!msg"> vote </div>
+                        </li>
+                        <li class="col-24" v-if="msg">
+                           <p>{{msg}}</p>
+                        </li>
+                     </ul>
+                     <div class="btn" @click="$root.shareThis()">Share</div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-auto col-side">
+               <div class="side-box" v-cloak></div>
+            </div>
+
+         </div>
+      </div>
+   </section>
+   
 </main>
+</list>
 
 <?php include 'partials/footer.php' ?>

@@ -1,4 +1,4 @@
-import {EventBus} from '../mixin'
+import {EventBus, onScroll, scrollTo} from '../mixin'
 
 export default {
 
@@ -6,6 +6,8 @@ export default {
 
    mixins: [
       EventBus,
+      onScroll,
+      scrollTo,
    ],
 
    data: () => {
@@ -20,7 +22,12 @@ export default {
          },
          lastFiter: '',
          loading: true,
-         responseErro: false
+         responseErro: false,
+         detail: false,
+         scrollPos: 0,
+         itemData: null,
+         msg: '',
+         lang: '',
       }
    },
 
@@ -97,6 +104,35 @@ export default {
          }
       },
 
+      showDetail: function(idx) {
+         this.itemData = this.itensList[idx]
+         window.history.pushState({}, 'detail', 'detail?id='+this.itemData.id)
+         this.detail = true
+         this.scrollPos = this.scrollTop
+         this.scrollTo('top', 'document', 0, 0)
+      },
+      backToList: function(idx) {
+         window.history.back();
+         this.detail = false
+         this.msg = ''
+         this.lang = ''
+         this.scrollTo('top', 'document', this.scrollPos, 0)
+      },
+      /* call for volte */
+      voteLang: function(lang) {
+         var self = this
+         this.lang = lang
+         axios({
+            method: 'put',
+            url: this.$root.urlAjax+'/questions/'+this.itemID
+         }).then(function (response) {
+            self.itemData = response.data
+            self.msg = 'thanks for voting on '+self.lang
+         }).catch(function (error) {
+            
+         });
+      },
+
    },
 
    watch: {
@@ -116,7 +152,6 @@ export default {
       })      
       EventBus.$on('sendData', function(data){
          Vue.nextTick( function () {
-            console.log(data)
             self.itensList = self.itensList.concat(data)
             self.search.offset = self.itensList.length
             self.search.total = self.search.total+1

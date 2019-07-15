@@ -2,18 +2,19 @@
 <?php $pageName = 'detail' ?>
 
 <?php include 'partials/head.php' ?>
+
+<detail inline-template>
 <main>
 
-	<detail inline-template>
 	<section class="section-detail padding">
 		<div class="container">
          <div class="row">
 
-        		<div class="col-auto col-side">
-               <div class="side-box" v-cloak>
-               	<a class="btn margin" href="javascript:window.history.back();" >Back</a>
-               	<div class="side-txt">id {{itemID}}</div>
-               </div>
+        	<div class="col-auto col-side">
+               	<div class="side-box" v-cloak>
+               		<a class="btn margin" href="/" >Back</a>
+               		<div class="side-txt">id {{itemID}}</div>
+               	</div>
             </div>
 
             <div class="col col-detail">
@@ -44,8 +45,8 @@
          </div>
  		</div>
 	</section>
-	</detail>
 	 
 </main>
+</detail>
 
 <?php include 'partials/footer.php' ?>
